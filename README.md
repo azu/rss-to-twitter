@@ -1,11 +1,11 @@
-# GitHub Actions Template
+# Rss To Twitter
 
-[![CI Status](https://github.com/technote-space/gh-actions-template/workflows/CI/badge.svg)](https://github.com/technote-space/gh-actions-template/actions)
-[![codecov](https://codecov.io/gh/technote-space/gh-actions-template/branch/master/graph/badge.svg)](https://codecov.io/gh/technote-space/gh-actions-template)
-[![CodeFactor](https://www.codefactor.io/repository/github/technote-space/gh-actions-template/badge)](https://www.codefactor.io/repository/github/technote-space/gh-actions-template)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/technote-space/gh-actions-template/blob/master/LICENSE)
+[![CI Status](https://github.com/azu/rss-to-twitter/workflows/CI/badge.svg)](https://github.com/azu/rss-to-twitter/actions)
+[![codecov](https://codecov.io/gh/azu/rss-to-twitter/branch/master/graph/badge.svg)](https://codecov.io/gh/azu/rss-to-twitter)
+[![CodeFactor](https://www.codefactor.io/repository/github/azu/rss-to-twitter/badge)](https://www.codefactor.io/repository/github/azu/rss-to-twitter)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/azu/rss-to-twitter/blob/master/LICENSE)
 
-Template for GitHub actions.
+GitHub Actions post twitter from RSS Feeds.
 
 ## Table of Contents
 
@@ -136,7 +136,7 @@ Add tag for test release
 https://api.slack.com/messaging/webhooks
 
 ## Test release
-[![technote-space/release-github-actions-cli - GitHub](https://gh-card.dev/repos/technote-space/release-github-actions-cli.svg)](https://github.com/technote-space/release-github-actions-cli)
+[![azu/release-github-actions-cli - GitHub](https://gh-card.dev/repos/azu/release-github-actions-cli.svg)](https://github.com/azu/release-github-actions-cli)
 
 1. Create `.env`  
    Set [Personal access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
@@ -147,7 +147,7 @@ https://api.slack.com/messaging/webhooks
    - Dry run: `yarn release -n`
    - Help: `yarn release -h`
 
-![cli](https://github.com/technote-space/gh-actions-template/raw/images/cli.gif)
+![cli](https://github.com/azu/rss-to-twitter/raw/images/cli.gif)
 
 Then, you can use your `GitHub Actions` like follows:
 
@@ -163,12 +163,10 @@ jobs:
 ```
 
 ## Helpers
-[![technote-space/github-action-helper - GitHub](https://gh-card.dev/repos/technote-space/github-action-helper.svg)](https://github.com/technote-space/github-action-helper)
+[![azu/github-action-helper - GitHub](https://gh-card.dev/repos/azu/github-action-helper.svg)](https://github.com/azu/github-action-helper)
 
-[![technote-space/github-action-test-helper - GitHub](https://gh-card.dev/repos/technote-space/github-action-test-helper.svg)](https://github.com/technote-space/github-action-test-helper)
+[![azu/github-action-test-helper - GitHub](https://gh-card.dev/repos/azu/github-action-test-helper.svg)](https://github.com/azu/github-action-test-helper)
 
-[![technote-space/filter-github-action - GitHub](https://gh-card.dev/repos/technote-space/filter-github-action.svg)](https://github.com/technote-space/filter-github-action)
+[![azu/filter-github-action - GitHub](https://gh-card.dev/repos/azu/filter-github-action.svg)](https://github.com/azu/filter-github-action)
 
 ## Author
-[GitHub (Technote)](https://github.com/technote-space)  
-[Blog](https://technote.space)

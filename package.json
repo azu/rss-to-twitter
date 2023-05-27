@@ -1,18 +1,18 @@
 {
-  "name": "@technote-space/gh-actions-template",
+  "name": "@azu/rss-to-twitter",
   "version": "0.8.1",
-  "description": "Template for GitHub actions.",
+  "description": "GitHub Actions post twitter from RSS Feeds.",
   "keywords": [
     "github",
     "github actions"
   ],
-  "homepage": "https://github.com/technote-space/gh-actions-template",
+  "homepage": "https://github.com/azu/rss-to-twitter",
   "bugs": {
-    "url": "https://github.com/technote-space/gh-actions-template/issues"
+    "url": "https://github.com/azu/rss-to-twitter/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/technote-space/gh-actions-template.git"
+    "url": "https://github.com/azu/rss-to-twitter.git"
   },
   "license": "MIT",
   "author": {
@@ -30,7 +30,6 @@
     "lint": "eslint 'src/**/*.ts' --cache",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "release": "yarn release-ga --test",
-    "setup": "if [[ $(uname -s) == 'Darwin' ]]; then BASH_ENV=~/.bashrc bash -O expand_aliases bin/setup.sh; else bash bin/setup.sh; fi && if [[ -f __DELETE__ ]]; then rm -rdf bin __DELETE__; fi",
     "test": "yarn lint && yarn typecheck && yarn cover",
     "typecheck": "tsc --noEmit",
     "update": "npm_config_yes=true npx npm-check-updates -u --timeout 100000 && yarn install && yarn upgrade && yarn audit"
