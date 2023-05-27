@@ -24,7 +24,7 @@
   ],
   "scripts": {
     "build": "rm -rdf lib && rollup -c",
-    "cover": "vitest run --coverage",
+    "cover": "vitest run",
     "lint": "eslint 'src/**/*.ts' --cache",
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "release": "yarn release-ga --test",
