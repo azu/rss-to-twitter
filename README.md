@@ -62,6 +62,11 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
 ```
 
+## Release Flow
+
+1. Tag to `v*` on Release Pages
+2. CI build action and push it
+
 ## Table of Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
