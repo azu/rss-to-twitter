@@ -13,7 +13,7 @@ describe('execute', () => {
     process.env.INPUT_RSS_URL = 'https://jser.info/rss/';
     // This cron means every day at 00:00
     process.env.INPUT_SCHEDULE = '0 0 * * *';
-    process.env.INPUT_STATUS_TEMPLATE = '"%title%" %url%\n%desc%';
+    process.env.INPUT_TWEET_TEMPLATE = '"%title%" %url%\n%desc%';
     // require env
     // process.env.INPUT_TWITTER_APIKEY = 'x';
     // process.env.INPUT_TWITTER_APIKEY_SECRET = 'x';

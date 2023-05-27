@@ -13,8 +13,8 @@ inputs:
     description: "Cron schedule to run the action. You need to copy the cron schedule from GitHub Actions on: parameter."
     default: '0 * * * *'
     required: true
-  STATUS_TEMPLATE:
-    description: Secret GitHub API token to use for making API requests.
+  TWEET_TEMPLATE:
+    description: "Template for tweet text. You can use %title%, %url%, %desc%"
     default: '"%title%" %url%'
     required: false
   # Twitter API token
