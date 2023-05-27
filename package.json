@@ -16,9 +16,7 @@
   },
   "license": "MIT",
   "author": {
-    "name": "Technote",
-    "email": "technote.space@gmail.com",
-    "url": "https://technote.space"
+    "name": "azu"
   },
   "files": [
     "lib",
