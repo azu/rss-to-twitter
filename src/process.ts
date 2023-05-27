@@ -49,7 +49,7 @@ export const execute = async(logger: Logger, _octokit: Octokit, _context: Contex
   if (!scheduleCron) {
     throw new Error('schedule should be copied cron expression like "0 0 * * *" on your schedule.');
   }
-  const diffMinutes = 1105; // cover 5 minutes delay
+  const diffMinutes = 5; // cover 5 minutes delay
   const currentDate = new Date();
   const adjustedDate = new Date(currentDate.getTime() - diffMinutes * 60 * 1000);
   const prevExecutionTime = await getPrevExecuteTime(scheduleCron, adjustedDate);
