@@ -8,10 +8,10 @@ GitHub Actions post twitter from RSS Feeds.
 ## Post Steps
 
 1. Fetch RSS Feeds
-2. Filter feed items by updated time
+2. Filter feed items by publish time
 3. Post to twitter.
 
-If your action uses `on.schedule.cron`, filter feed items by updated time compare to previous cron execution time.
+If your action uses `on.schedule.cron`, filter feed items by publish time compare to previous cron execution time.
 If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_MINUTES` option.
 
 ## Usage
@@ -53,6 +53,8 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
+:memo: filter feed items by publish time compare to previous cron execution time.
+
 ### On Page build
 
 ```yaml
@@ -73,10 +75,18 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
+:memo: filter feed items by publish time within 15 minutes.
+
 ## Release Flow
 
 1. Tag to `v*` on Release Pages
 2. CI build action and push it
+
+## License
+
+MIT
+
+----
 
 ## Table of Contents
 
@@ -232,12 +242,3 @@ jobs:
     steps:
       - uses: owner/repo@gh-actions
 ```
-
-## Helpers
-[![azu/github-action-helper - GitHub](https://gh-card.dev/repos/azu/github-action-helper.svg)](https://github.com/azu/github-action-helper)
-
-[![azu/github-action-test-helper - GitHub](https://gh-card.dev/repos/azu/github-action-test-helper.svg)](https://github.com/azu/github-action-test-helper)
-
-[![azu/filter-github-action - GitHub](https://gh-card.dev/repos/azu/filter-github-action.svg)](https://github.com/azu/filter-github-action)
-
-## Author
