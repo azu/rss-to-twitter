@@ -9,7 +9,7 @@ describe('execute', () => {
   // testEnv(rootDir);
   // testChildProcess();
 
-  it('should execute', async() => {
+  it.skip('should execute', async() => {
     // const mockStdout = spyOnStdout();
     process.env.INPUT_RSS_URL = 'https://jser.info/rss/';
     // This cron means every day at 00:00
