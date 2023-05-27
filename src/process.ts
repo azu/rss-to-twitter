@@ -79,7 +79,7 @@ export const execute = async(logger: Logger): Promise<void> => {
     required: true,
   });
 
-  const statusTemplate = core.getInput('TWEET_TEMPLATE') || '"%title%" %url%';
+  const tweetTemplate = core.getInput('TWEET_TEMPLATE') || '"%title%" %url%';
   const reverseUpdatedItems = updatedItems.reverse();
   for (const updatedItem of reverseUpdatedItems) {
     const statusText = truncate({
@@ -91,7 +91,7 @@ export const execute = async(logger: Logger): Promise<void> => {
       quote: ''
     }, {
       // `"%title%" %url% %desc%`
-      template: statusTemplate
+      template: tweetTemplate
     });
     try {
       await postToTwitter(statusText, {
