@@ -27,7 +27,10 @@ inputs:
   TWITTER_ACCESS_TOKEN:
     description: Twitter Access Token
     required: true
-
+  UPDATE_WITHIN_MINUTES:
+    description: "Post only if the feed is updated within the specified minutes."
+    default: "60"
+    required: false
 
 #outputs:
 #  result:
