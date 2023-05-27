@@ -20,7 +20,7 @@ jobs:
           IGNORE_WARNING: 'true'
       - uses: technote-space/toc-generator@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
           TARGET_BRANCH_PREFIX: ${{ env.BRANCH_PREFIX }}
           FOLDING: ${{ env.TOC_FOLDING }}
           MAX_HEADER_LEVEL: ${{ env.TOC_MAX_HEADER_LEVEL }}

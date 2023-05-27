@@ -18,16 +18,16 @@ async function getPrevExecuteTime(cronSyntax: string, currentDate: Date) {
 }
 
 async function postToTwitter(statusText: string, twitterConfig: {
-  APIKEY: string;
-  APIKEY_SECRET: string;
-  ACCESS_TOKEN: string;
-  ACCESS_TOKEN_SECRET: string;
+  TWITTER_APIKEY: string;
+  TWITTER_APIKEY_SECRET: string;
+  TWITTER_ACCESS_TOKEN: string;
+  TWITTER_ACCESS_TOKEN_SECRET: string;
 }) {
   const twitterClient = new TwitterApi({
-    appKey: twitterConfig.APIKEY,
-    appSecret: twitterConfig.APIKEY_SECRET,
-    accessToken: twitterConfig.ACCESS_TOKEN,
-    accessSecret: twitterConfig.ACCESS_TOKEN_SECRET,
+    appKey: twitterConfig.TWITTER_APIKEY,
+    appSecret: twitterConfig.TWITTER_APIKEY_SECRET,
+    accessToken: twitterConfig.TWITTER_ACCESS_TOKEN,
+    accessSecret: twitterConfig.TWITTER_ACCESS_TOKEN_SECRET,
   });
   return twitterClient.v2.tweet(statusText);
 }
@@ -66,16 +66,16 @@ export const execute = async(logger: Logger): Promise<void> => {
     return logger.endProcess();
   }
   logger.startProcess('Tweet updated %d items', updatedItems.length);
-  const ACCESS_TOKEN_SECRET = core.getInput('ACCESS_TOKEN_SECRET', {
+  const TWITTER_ACCESS_TOKEN_SECRET = core.getInput('TWITTER_ACCESS_TOKEN_SECRET', {
     required: true,
   });
-  const ACCESS_TOKEN = core.getInput('ACCESS_TOKEN', {
+  const TWITTER_ACCESS_TOKEN = core.getInput('TWITTER_ACCESS_TOKEN', {
     required: true,
   });
-  const APIKEY = core.getInput('APIKEY', {
+  const TWITTER_APIKEY = core.getInput('TWITTER_APIKEY', {
     required: true,
   });
-  const APIKEY_SECRET = core.getInput('APIKEY_SECRET', {
+  const TWITTER_APIKEY_SECRET = core.getInput('TWITTER_APIKEY_SECRET', {
     required: true,
   });
 
@@ -95,10 +95,10 @@ export const execute = async(logger: Logger): Promise<void> => {
     });
     try {
       await postToTwitter(statusText, {
-        APIKEY,
-        APIKEY_SECRET,
-        ACCESS_TOKEN,
-        ACCESS_TOKEN_SECRET,
+        TWITTER_APIKEY,
+        TWITTER_APIKEY_SECRET,
+        TWITTER_ACCESS_TOKEN,
+        TWITTER_ACCESS_TOKEN_SECRET,
       });
     } catch (error: any) {
       logger.debug(JSON.stringify(error));

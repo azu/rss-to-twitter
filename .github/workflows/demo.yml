@@ -15,7 +15,7 @@ jobs:
           STATUS_TEMPLATE: 'New Post: "%title%" %url%'
           SCHEDULE: "*/15 * * * *"
           # Twitter API Key
-          APIKEY: ${{ secrets.APIKEY }}
-          APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          TWITTER_APIKEY: ${{ secrets.APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}

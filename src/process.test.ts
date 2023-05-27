@@ -15,10 +15,10 @@ describe('execute', () => {
     process.env.INPUT_SCHEDULE = '0 0 * * *';
     process.env.INPUT_STATUS_TEMPLATE = '"%title%" %url%\n%desc%';
     // require env
-    // process.env.INPUT_APIKEY = 'x';
-    // process.env.INPUT_APIKEY_SECRET = 'x';
-    // process.env.INPUT_ACCESS_TOKEN = 'x-7U/x';
-    // process.env.INPUT_ACCESS_TOKEN_SECRET = 'x';
+    // process.env.INPUT_TWITTER_APIKEY = 'x';
+    // process.env.INPUT_TWITTER_APIKEY_SECRET = 'x';
+    // process.env.INPUT_TWITTER_ACCESS_TOKEN = 'x-7U/x';
+    // process.env.INPUT_TWITTER_ACCESS_TOKEN_SECRET = 'x';
     await execute(new Logger());
   });
 });
