@@ -1,23 +1,49 @@
 # RSS To Twitter
 
 [![CI Status](https://github.com/azu/rss-to-twitter/workflows/CI/badge.svg)](https://github.com/azu/rss-to-twitter/actions)
-[![codecov](https://codecov.io/gh/azu/rss-to-twitter/branch/master/graph/badge.svg)](https://codecov.io/gh/azu/rss-to-twitter)
-[![CodeFactor](https://www.codefactor.io/repository/github/azu/rss-to-twitter/badge)](https://www.codefactor.io/repository/github/azu/rss-to-twitter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/azu/rss-to-twitter/blob/master/LICENSE)
 
 GitHub Actions post twitter from RSS Feeds.
 
+## Post Steps
+
+1. Fetch RSS Feeds
+2. Filter feed items by publish time
+3. Post to twitter.
+
+If your action uses `on.schedule.cron`, filter feed items by publish time compare to previous cron execution time.
+If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_MINUTES` option.
+
 ## Usage
 
+### Prepare Twitter API Keys
+
+1. Create Twitter App - <https://developer.twitter.com/en/portal/dashboard>
+2. Change your app permission to `Read and Write`
+  - ![ss 1](docs/img.png)
+  - ![ss 2](docs/img_1.png)
+3. Get API Key/API Key Secret and Access Token/Access Token Secret
+4. Add these keys to GitHub Secrets
+   - `TWITTER_APIKEY`
+   - `TWITTER_APIKEY_SECRET`
+   - `TWITTER_ACCESS_TOKEN`
+   - `TWITTER_ACCESS_TOKEN_SECRET`
+
+:memo: Bearer Token is not needed.
+
+### On schedule
+
+Post new feed item via schedule cron every 15 minutes.
+
 ```yaml
-name: demo
+name: rss-to-twitter
 on:
   schedule:
     # every 15 minutes
     - cron: "*/15 * * * *"
   workflow_dispatch:
 jobs:
-  deploy:
+  twitter:
     runs-on: ubuntu-latest
     steps:
       - uses: azu/rss-to-twitter@v0.1
@@ -25,14 +51,49 @@ jobs:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
-          SCHEDULE: "*/15 * * * *" # It should same to schedule.cron value
-          # Twitter API Keys
-          TWITTER_APIKEY: ${{ secrets.APIKEY }}
-          TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
-          TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.TWITTER_APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
+:memo: filter feed items by publish time compare to previous cron execution time.
+
+### On Page build
+
+Post new feed item via GitHub Pages Build event.
+
+```yaml
+name: rss-to-twitter
+on:
+  page_build
+jobs:
+  twitter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azu/rss-to-twitter@v0.1
+        with:
+          RSS_URL: "https://you.github.io/feed.xml"
+          TWEET_TEMPLATE: 'New Post: "%title%" %url%'
+          UPDATE_WITHIN_MINUTES: 15 # post items that are updated within 15 minutes
+          TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.TWITTER_APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+```
+
+:memo: filter feed items by publish time within 15 minutes.
+
+## Release Flow
+
+1. Tag to `v*` on Release Pages
+2. CI build action and push it
+
+## License
+
+MIT
+
+----
 
 ## Table of Contents
 
@@ -188,12 +249,3 @@ jobs:
     steps:
       - uses: owner/repo@gh-actions
 ```
-
-## Helpers
-[![azu/github-action-helper - GitHub](https://gh-card.dev/repos/azu/github-action-helper.svg)](https://github.com/azu/github-action-helper)
-
-[![azu/github-action-test-helper - GitHub](https://gh-card.dev/repos/azu/github-action-test-helper.svg)](https://github.com/azu/github-action-test-helper)
-
-[![azu/filter-github-action - GitHub](https://gh-card.dev/repos/azu/filter-github-action.svg)](https://github.com/azu/filter-github-action)
-
-## Author
