@@ -20,9 +20,6 @@ describe('execute', () => {
     // process.env.INPUT_APIKEY_SECRET = 'x';
     // process.env.INPUT_ACCESS_TOKEN = 'x-7U/x';
     // process.env.INPUT_ACCESS_TOKEN_SECRET = 'x';
-    await execute(new Logger(), getOctokit(), generateContext({
-      owner: 'hello',
-      repo: 'world'
-    }));
+    await execute(new Logger());
   });
 });
