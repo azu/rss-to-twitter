@@ -1,8 +1,6 @@
 # RSS To Twitter
 
 [![CI Status](https://github.com/azu/rss-to-twitter/workflows/CI/badge.svg)](https://github.com/azu/rss-to-twitter/actions)
-[![codecov](https://codecov.io/gh/azu/rss-to-twitter/branch/master/graph/badge.svg)](https://codecov.io/gh/azu/rss-to-twitter)
-[![CodeFactor](https://www.codefactor.io/repository/github/azu/rss-to-twitter/badge)](https://www.codefactor.io/repository/github/azu/rss-to-twitter)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/azu/rss-to-twitter/blob/master/LICENSE)
 
 GitHub Actions post twitter from RSS Feeds.
