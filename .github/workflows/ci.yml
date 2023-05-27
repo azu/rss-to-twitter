@@ -4,14 +4,13 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 name: CI
-permissions:
-  contents: read
-
 jobs:
   eslint:
     name: ESLint
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
     env:
       LINT: 1
     steps:
@@ -111,6 +110,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: startsWith(github.ref, 'refs/tags/')
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -137,6 +138,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: read
     strategy:
       matrix:
         target: ['npm', 'gpr']
@@ -210,6 +213,8 @@ jobs:
     needs: [release, package]
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: write
     steps:
       - name: Get version
         run: echo "TAG_NAME=${HEAD_REF#refs/tags/}" >> $GITHUB_ENV
