@@ -51,7 +51,7 @@ jobs:
   twitter:
     runs-on: ubuntu-latest
     steps:
-      - uses: azu/rss-to-twitter@v0.1
+      - uses: azu/rss-to-twitter@v1
         with:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
@@ -76,11 +76,11 @@ jobs:
   twitter:
     runs-on: ubuntu-latest
     steps:
-      - uses: azu/rss-to-twitter@v0.1
+      - uses: azu/rss-to-twitter@v1
         with:
           RSS_URL: "https://you.github.io/feed.xml"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
-          UPDATE_WITHIN_MINUTES: 15 # post items that are updated within 15 minutes
+          UPDATE_WITHIN_MINUTES: 15 # post items that are published within 15 minutes
           TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
           TWITTER_APIKEY_SECRET: ${{ secrets.TWITTER_APIKEY_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}

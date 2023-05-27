@@ -2,12 +2,22 @@
 "use strict";
 import * as twttr from "twitter-text";
 // DEBUG=TweetTruncator*
-const debug = require("debug")("TweetTruncator");
-const joinText = (array, separator) => {
-    const isNotEmpty = (string) => {
+import debug0 from "debug";
+
+const debug = debug0("TweetTruncator");
+const joinText = (array: string[], separator: string) => {
+    const isNotEmpty = (string: string) => {
         return string.length > 0;
     };
     return array.filter(isNotEmpty).join(separator);
+};
+export type TweetTruncatorOptions = {
+    defaultPrefix?: string;
+    template?: string;
+    truncatedOrder?: string[];
+    elisionMark?: string;
+
+    twitterTextOptions?: any;
 };
 const defaultOptions = {
     defaultPrefix: "",
@@ -17,8 +27,15 @@ const defaultOptions = {
     elisionMark: "…"
 };
 
+export type TweetTruncatorContents = { desc: string; quote: string; title: string; url: string; tags: string[] };
 export default class TweetTruncator {
-    constructor(options = {}) {
+    private template: string;
+    private defaultPrefix: string;
+    private readonly truncatedOrder: string[];
+    private elisionMark: string;
+    private twitterTextOptions: any;
+
+    constructor(options: TweetTruncatorOptions = {}) {
         this.template = options.template || defaultOptions.template;
         this.defaultPrefix = options.defaultPrefix || defaultOptions.defaultPrefix;
         this.truncatedOrder = options.truncatedOrder || defaultOptions.truncatedOrder;
@@ -26,11 +43,11 @@ export default class TweetTruncator {
         this.twitterTextOptions = options.twitterTextOptions || {};
     }
 
-    getTweetLength(str) {
+    getTweetLength(str: string) {
         return twttr.getTweetLength(str, this.twitterTextOptions);
     }
 
-    joinContents(contents) {
+    joinContents(contents: TweetTruncatorContents) {
         let template = this.template;
         let { desc, quote, title, url, tags } = contents;
         let prefix = desc ? "" : this.defaultPrefix;
@@ -40,7 +57,8 @@ export default class TweetTruncator {
             : joinText([prefix, desc, quote, title, url, ...tags], " ");
     }
 
-    extractTemplate(prefix, template, contents) {
+    extractTemplate(prefix: string, template: string, contents: TweetTruncatorContents) {
+        // @ts-expect-error: TODO: fix me
         contents.usage = {};
 
         let fixedTemplate = template
@@ -48,9 +66,9 @@ export default class TweetTruncator {
                 if (name === "br") {
                     return "\n";
                 }
-
+                // @ts-expect-error: TODO: fix me
                 contents.usage[name] = true;
-
+                // @ts-expect-error: TODO: fix me
                 return contents[name].length ? match : "";
             })
             .trim()
@@ -59,15 +77,16 @@ export default class TweetTruncator {
 
         return joinText(
             [prefix, ...fixedTemplate.split(" ")].map((content) =>
-                content.replace(/%(desc|quote|title|url|tags)%/g, (match, name) =>
-                    name === "tags" ? contents.tags.join(" ") : contents[name]
-                )
+                content.replace(/%(desc|quote|title|url|tags)%/g, (match, name) => {
+                    // @ts-expect-error: TODO: fix me
+                    return name === "tags" ? contents.tags.join(" ") : contents[name];
+                })
             ),
             " "
         );
     }
 
-    truncateStatus(contents, overLength = 0) {
+    truncateStatus(contents: TweetTruncatorContents, overLength = 0) {
         let over = overLength;
 
         let copiedContents = { ...contents };
@@ -75,7 +94,7 @@ export default class TweetTruncator {
         const getTweetLength = this.getTweetLength.bind(this);
         const truncateContent = this.truncateContent.bind(this);
         let truncators = {
-            tags: (array) => {
+            tags: (array: string[]) => {
                 let arr = array.slice();
 
                 copiedContents.tags = arr
@@ -93,7 +112,7 @@ export default class TweetTruncator {
                     return true;
                 }
             },
-            title: (string) => {
+            title: (string: string) => {
                 let str = truncateContent(string, over + elisionMark.length);
                 debug(`[TITLE] over: ${over}
 ${string}
@@ -111,7 +130,7 @@ ${str.length ? str : "[DELETE]"}`);
 
                 return true;
             },
-            quote: (string) => {
+            quote: (string: string) => {
                 let str = truncateContent(string.slice(1, -1), over + elisionMark.length);
                 debug(`[Quote] over: ${over}
 ${string}
@@ -130,7 +149,7 @@ ${str.length ? str : "[DELETE]"}`);
 
                 return true;
             },
-            desc: (string) => {
+            desc: (string: string) => {
                 var str = truncateContent(string, over + elisionMark.length) + elisionMark;
                 copiedContents.desc = str;
                 debug(`[DESC] over: ${over}
@@ -139,7 +158,7 @@ ${string}
 ${str.length ? str : "[DELETE]"}`);
                 return true;
             },
-            url: (string) => {
+            url: (string: string) => {
                 // no change
                 return true;
             }
@@ -149,10 +168,14 @@ ${str.length ? str : "[DELETE]"}`);
                 break;
             }
             const truncatorName = this.truncatedOrder[i];
+            // @ts-expect-error: TODO: fix me
             if (copiedContents.usage && !copiedContents.usage[truncatorName]) {
+                // @ts-expect-error: TODO: fix me
                 copiedContents[truncatorName] = truncatorName === "tags" ? [] : "";
             }
+            // @ts-expect-error: TODO: fix me
             const content = copiedContents[truncatorName];
+            // @ts-expect-error: TODO: fix me
             const truncate = truncators[truncatorName];
             if (content.length && truncate(content)) {
                 break;
@@ -162,7 +185,7 @@ ${str.length ? str : "[DELETE]"}`);
         return this.joinContents(copiedContents);
     }
 
-    truncateContent(content, overLength) {
+    truncateContent(content: string, overLength: number) {
         // for surrogate pair
         let strArr = [...content];
         let urls = twttr.extractUrlsWithIndices(content).reverse();

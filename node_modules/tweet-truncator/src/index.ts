@@ -1,8 +1,10 @@
 // LICENSE : MIT
 "use strict";
-import TweetTruncator from "./tweet-truncator";
+import TweetTruncator, { TweetTruncatorContents, TweetTruncatorOptions } from "./tweet-truncator";
 // export class
-export { TweetTruncator as TweetTruncator };
+export { TweetTruncator };
+// export type
+export type { TweetTruncatorContents, TweetTruncatorOptions };
 
 /**
  * truncate contents object with maxLength.
@@ -16,7 +18,10 @@ export { TweetTruncator as TweetTruncator };
  * @param {object} options
  * @returns {string}
  */
-export function truncate(contents, options = {}) {
+export function truncate(
+    contents: Partial<TweetTruncatorContents>,
+    options: TweetTruncatorOptions & { maxLength?: number } = {}
+) {
     const maxLength = options.maxLength || 280; // default: 280
     const twitterTr = new TweetTruncator(options);
     const fixedContents = {
