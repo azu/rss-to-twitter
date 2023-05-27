@@ -20,6 +20,8 @@ If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_
 
 1. Create Twitter App - <https://developer.twitter.com/en/portal/dashboard>
 2. Change your app permission to `Read and Write`
+  - ![ss 1](docs/img.png)
+  - ![ss 2](docs/img_1.png)
 3. Get API Key/API Key Secret and Access Token/Access Token Secret
 4. Add these keys to GitHub Secrets
    - `TWITTER_APIKEY`
