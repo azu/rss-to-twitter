@@ -1,0 +1,20 @@
+name: demo
+on:
+  schedule:
+    # every 0:00 UTC
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azu/rss-to-twitter@v0.1
+        with:
+            # RSS feed URL
+            RSS_URL: "https://hnrss.org/newest"
+            STATUS_TEMPLATE: "New Post: {{title}} {{link}}"
+            # Twitter API Key
+            CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+            CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+            ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
+            ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
