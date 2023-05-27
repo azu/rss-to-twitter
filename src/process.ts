@@ -34,8 +34,8 @@ async function postToTwitter(statusText: string, twitterConfig: {
 }
 
 const computePrevTime = async(currentDate: Date, logger: Logger, context: Context) => {
-  const isWorkflowDispatch = context.eventName === 'workflow_dispatch';
-  if (isWorkflowDispatch) {
+  const isScheduleEvent = context.eventName === 'schedule';
+  if (isScheduleEvent) {
     const diffMinutes = 5; // cover 5 minutes delay
     const scheduleCron = context.payload.schedule;
     if (typeof scheduleCron !== 'string') {
