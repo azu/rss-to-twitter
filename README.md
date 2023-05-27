@@ -7,7 +7,18 @@
 
 GitHub Actions post twitter from RSS Feeds.
 
+## Post Steps
+
+1. Fetch RSS Feeds
+2. Filter feed items by updated time
+3. Post to twitter.
+
+If your action uses `on.schedule.cron`, filter feed items by updated time compare to previous cron execution time.
+If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_MINUTES` option.
+
 ## Usage
+
+On schedule, post to twitter.
 
 ```yaml
 name: demo
@@ -25,14 +36,31 @@ jobs:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
-          SCHEDULE: "*/15 * * * *" # It should same to schedule.cron value
-          # Twitter API Keys
           TWITTER_APIKEY: ${{ secrets.APIKEY }}
           TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
 ```
 
+On Page build, post to twitter.
+
+```yaml
+on:
+  page_build
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azu/rss-to-twitter@v0.1
+        with:
+          RSS_URL: "https://you.github.io/feed.xml
+          TWEET_TEMPLATE: 'New Post: "%title%" %url%'
+          UPDATE_WITHIN_MINUTES: 15 # post items that are updated within 15 minutes
+          TWITTER_APIKEY: ${{ secrets.APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+```
 
 ## Table of Contents
 
