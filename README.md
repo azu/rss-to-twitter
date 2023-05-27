@@ -26,7 +26,7 @@ If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_
 
 :memo: Bearer Token is not needed.
 
-### On schedule, post to twitter.
+### On schedule
 
 ```yaml
 name: demo
@@ -50,7 +50,7 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
 ```
 
-## On Page build, post to twitter.
+### On Page build
 
 ```yaml
 on:
