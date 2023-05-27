@@ -34,7 +34,7 @@ async function postToTwitter(statusText: string, twitterConfig: {
   return twitterClient.v2.tweet(statusText);
 }
 
-export const execute = async(logger: Logger, _octokit: Octokit, _context: Context): Promise<void> => {
+export const execute = async(logger: Logger): Promise<void> => {
   const rssUrl = core.getInput('RSS_URL', {
     required: true,
     trimWhitespace: true
