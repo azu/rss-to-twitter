@@ -13,22 +13,22 @@ inputs:
     description: "Cron schedule to run the action. You need to copy the cron schedule from GitHub Actions on: parameter."
     default: '0 * * * *'
     required: true
-  STATUS_TEMPLATE:
-    description: Secret GitHub API token to use for making API requests.
+  TWEET_TEMPLATE:
+    description: "Template for tweet text. You can use %title%, %url%, %desc%"
     default: '"%title%" %url%'
     required: false
   # Twitter API token
   # Create your own Twitter App token from https://developer.twitter.com/en/portal/dashboard
-  APIKEY:
+  TWITTER_APIKEY:
     description: Twitter API Key(App Key)
     required: true
-  APIKEY_SECRET:
+  TWITTER_APIKEY_SECRET:
     description: Twitter API Secret(App key secret)
     required: true
-  ACCESS_TOKEN_SECRET:
+  TWITTER_ACCESS_TOKEN_SECRET:
     description: Twitter Access Token Secret
     required: true
-  ACCESS_TOKEN:
+  TWITTER_ACCESS_TOKEN:
     description: Twitter Access Token
     required: true
 
