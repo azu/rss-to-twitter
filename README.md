@@ -1,4 +1,4 @@
-# Rss To Twitter
+# RSS To Twitter
 
 [![CI Status](https://github.com/azu/rss-to-twitter/workflows/CI/badge.svg)](https://github.com/azu/rss-to-twitter/actions)
 [![codecov](https://codecov.io/gh/azu/rss-to-twitter/branch/master/graph/badge.svg)](https://codecov.io/gh/azu/rss-to-twitter)
@@ -6,6 +6,33 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/azu/rss-to-twitter/blob/master/LICENSE)
 
 GitHub Actions post twitter from RSS Feeds.
+
+## Usage
+
+```yaml
+name: demo
+on:
+  schedule:
+    # every 15 minutes
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: azu/rss-to-twitter@v0.1
+        with:
+          # RSS feed URL
+          RSS_URL: "https://hnrss.org/newest"
+          TWEET_TEMPLATE: 'New Post: "%title%" %url%'
+          SCHEDULE: "*/15 * * * *" # It should same to schedule.cron value
+          # Twitter API Keys
+          TWITTER_APIKEY: ${{ secrets.APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+```
+
 
 ## Table of Contents
 
