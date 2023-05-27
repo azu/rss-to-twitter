@@ -1,7 +1,7 @@
 # https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/metadata-syntax-for-github-actions
-name: Rss To Twitter
+name: RSS To Twitter
 
-description: GitHub Actions post twitter from RSS Feeds.
+description: GitHub Actions posts twitter from RSS Feeds.
 
 author: azu
 
@@ -15,7 +15,7 @@ inputs:
     required: true
   STATUS_TEMPLATE:
     description: Secret GitHub API token to use for making API requests.
-    default: ""%title%" %url%"
+    default: '"%title%" %url%'
     required: false
   # Twitter API token
   # Create your own Twitter App token from https://developer.twitter.com/en/portal/dashboard
