@@ -1,6 +1,5 @@
 /* eslint-disable no-magic-numbers */
 import { Logger } from '@technote-space/github-action-log-helper';
-import { generateContext, getOctokit, } from '@technote-space/github-action-test-helper';
 import { describe, it } from 'vitest';
 import { execute } from './process';
 
