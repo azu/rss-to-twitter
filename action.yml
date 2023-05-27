@@ -9,10 +9,6 @@ inputs:
   RSS_URL:
     description: RSS URL to fetch.
     required: true
-  SCHEDULE:
-    description: "Cron schedule to run the action. You need to copy the cron schedule from GitHub Actions on: parameter."
-    default: '0 * * * *'
-    required: true
   TWEET_TEMPLATE:
     description: "Template for tweet text. You can use %title%, %url%, %desc%"
     default: '"%title%" %url%'

@@ -9,7 +9,7 @@ import { execute } from './process';
   const logger  = new Logger();
   const context = new Context();
   ContextHelper.showActionInfo(resolve(__dirname, '..'), logger, context);
-  await execute(logger);
+  await execute(logger, context);
 })().catch(error => {
   console.log(error);
   setFailed(error.message);

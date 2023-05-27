@@ -1,5 +1,6 @@
 import type { Logger } from '@technote-space/github-action-log-helper';
 import * as core from '@actions/core';
+import { Context } from '@actions/github/lib/context';
 import cronParser from 'cron-parser';
 import Parser from 'rss-parser';
 import { truncate } from 'tweet-truncator';
@@ -32,7 +33,30 @@ async function postToTwitter(statusText: string, twitterConfig: {
   return twitterClient.v2.tweet(statusText);
 }
 
-export const execute = async(logger: Logger): Promise<void> => {
+const computePrevTime = async(currentDate: Date, logger: Logger, context: Context) => {
+  const isWorkflowDispatch = context.eventName === 'workflow_dispatch';
+  if (isWorkflowDispatch) {
+    const diffMinutes = 5; // cover 5 minutes delay
+    const scheduleCron = context.payload.schedule;
+    if (typeof scheduleCron !== 'string') {
+      throw new Error('schedule.cron is not string');
+    }
+    logger.info('schedule.cron: %s', scheduleCron);
+    const adjustedDate = new Date(currentDate.getTime() - diffMinutes * 60 * 1000);
+    const prevExecutionTime = await getPrevExecuteTime(scheduleCron, adjustedDate);
+    return prevExecutionTime.toDate();
+  } else {
+    // Update within hours
+    // Default: 60 minutes
+    const updateWithinMinutesStr = core.getInput('UPDATE_WITHIN_MINUTES', {
+      required: false
+    });
+    const updateWithinMinutes = updateWithinMinutesStr ? parseInt(updateWithinMinutesStr, 10) : 60;
+    logger.info('update within minutes: %d', updateWithinMinutes);
+    return new Date(currentDate.getTime() - updateWithinMinutes * 60 * 1000);
+  }
+};
+export const execute = async(logger: Logger, context: Context): Promise<void> => {
   const rssUrl = core.getInput('RSS_URL', {
     required: true,
     trimWhitespace: true
@@ -40,20 +64,10 @@ export const execute = async(logger: Logger): Promise<void> => {
   logger.startProcess('fetch rss feed: ' + rssUrl);
   const rssFeed = await fetchRSSFeed(rssUrl);
   logger.info('title: %s, items: %d', rssFeed.title, rssFeed.items.length);
-  const scheduleCron = core.getInput('SCHEDULE', {
-    required: true,
-    trimWhitespace: true
-  });
-  if (!scheduleCron) {
-    throw new Error('schedule should be copied cron expression like "0 0 * * *" on your schedule.');
-  }
-  const diffMinutes = 5; // cover 5 minutes delay
-  const currentDate = new Date();
-  const adjustedDate = new Date(currentDate.getTime() - diffMinutes * 60 * 1000);
-  const prevExecutionTime = await getPrevExecuteTime(scheduleCron, adjustedDate);
-  logger.startProcess(`filter updated items by schedule: ${scheduleCron}`);
-  logger.info(`current time: ${currentDate.toISOString()}, prev execute time: ${prevExecutionTime.toDate().toISOString()}`);
 
+  const currentDate = new Date();
+  const prevExecutionTime = await computePrevTime(currentDate, logger, context);
+  logger.info(`current time: ${currentDate.toISOString()}, prev execute time: ${prevExecutionTime.toISOString()}`);
   const updatedItems = rssFeed.items.filter((item) => {
     if (!item.pubDate) {
       return false;// skip if no publish date

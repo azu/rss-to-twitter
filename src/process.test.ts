@@ -1,5 +1,6 @@
 /* eslint-disable no-magic-numbers */
 import { Logger } from '@technote-space/github-action-log-helper';
+import { generateContext } from '@technote-space/github-action-test-helper';
 import { describe, it } from 'vitest';
 import { execute } from './process';
 
@@ -19,6 +20,6 @@ describe('execute', () => {
     // process.env.INPUT_TWITTER_APIKEY_SECRET = 'x';
     // process.env.INPUT_TWITTER_ACCESS_TOKEN = 'x-7U/x';
     // process.env.INPUT_TWITTER_ACCESS_TOKEN_SECRET = 'x';
-    await execute(new Logger());
+    await execute(new Logger(), generateContext({ owner: 'hello', repo: 'world' }));
   });
 });
