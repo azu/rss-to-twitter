@@ -1,7 +1,7 @@
 # https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/metadata-syntax-for-github-actions
-name: Rss To Twitter
+name: RSS To Twitter
 
-description: GitHub Actions post twitter from RSS Feeds.
+description: GitHub Actions posts twitter from RSS Feeds.
 
 author: azu
 
