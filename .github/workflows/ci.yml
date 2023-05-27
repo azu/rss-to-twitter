@@ -208,45 +208,45 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: env.RUNNING && matrix.target == 'gpr'
 
-  publishRelease:
-    name: Create Release
-    needs: [release, package]
-    runs-on: ubuntu-latest
-    timeout-minutes: 5
-    permissions:
-      contents: write
-    steps:
-      - name: Get version
-        run: echo "TAG_NAME=${HEAD_REF#refs/tags/}" >> $GITHUB_ENV
-        env:
-          HEAD_REF: ${{ github.ref }}
-      - name: Create Release
-        id: drafter
-        uses: technote-space/release-drafter@v6
-        with:
-          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          DRAFT: false
-          NAME: ${{ env.TAG_NAME }}
-          TAG: ${{ env.TAG_NAME }}
-      - uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          text: ${{ format('<{0}>', steps.drafter.outputs.html_url) }}
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: success() && env.SLACK_WEBHOOK_URL
+#  publishRelease:
+#    name: Create Release
+#    needs: [release, package]
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 5
+#    permissions:
+#      contents: write
+#    steps:
+#      - name: Get version
+#        run: echo "TAG_NAME=${HEAD_REF#refs/tags/}" >> $GITHUB_ENV
+#        env:
+#          HEAD_REF: ${{ github.ref }}
+#      - name: Create Release
+#        id: drafter
+#        uses: technote-space/release-drafter@v6
+#        with:
+#          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#          DRAFT: false
+#          NAME: ${{ env.TAG_NAME }}
+#          TAG: ${{ env.TAG_NAME }}
+#      - uses: 8398a7/action-slack@v3
+#        with:
+#          status: ${{ job.status }}
+#          text: ${{ format('<{0}>', steps.drafter.outputs.html_url) }}
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: success() && env.SLACK_WEBHOOK_URL
 
-  slack:
-    name: Slack
-    needs: publishRelease
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    if: always()
-    steps:
-      - uses: technote-space/workflow-conclusion-action@v3
-      - uses: 8398a7/action-slack@v3
-        with:
-          status: failure
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: env.WORKFLOW_CONCLUSION == 'failure' && env.SLACK_WEBHOOK_URL
+#  slack:
+#    name: Slack
+#    needs: publishRelease
+#    runs-on: ubuntu-latest
+#    timeout-minutes: 3
+#    if: always()
+#    steps:
+#      - uses: technote-space/workflow-conclusion-action@v3
+#      - uses: 8398a7/action-slack@v3
+#        with:
+#          status: failure
+#        env:
+#          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#        if: env.WORKFLOW_CONCLUSION == 'failure' && env.SLACK_WEBHOOK_URL
