@@ -1,15 +1,37 @@
 # https://docs.github.com/en/free-pro-team@latest/actions/creating-actions/metadata-syntax-for-github-actions
-name: GitHub Actions Template
+name: Rss To Twitter
 
-description: Template for GitHub actions.
+description: GitHub Actions post twitter from RSS Feeds.
 
-author: technote-space
+author: azu
 
 inputs:
-  GITHUB_TOKEN:
+  RSS_URL:
+    description: RSS URL to fetch.
+    required: true
+  SCHEDULE:
+    description: "Cron schedule to run the action. You need to copy the cron schedule from GitHub Actions on: parameter."
+    default: '0 * * * *'
+    required: true
+  STATUS_TEMPLATE:
     description: Secret GitHub API token to use for making API requests.
-    default: ${{ github.token }}
+    default: ""%title%" %url%"
     required: false
+  # Twitter API token
+  # Create your own Twitter App token from https://developer.twitter.com/en/portal/dashboard
+  APIKEY:
+    description: Twitter API Key(App Key)
+    required: true
+  APIKEY_SECRET:
+    description: Twitter API Secret(App key secret)
+    required: true
+  ACCESS_TOKEN_SECRET:
+    description: Twitter Access Token Secret
+    required: true
+  ACCESS_TOKEN:
+    description: Twitter Access Token
+    required: true
+
 
 #outputs:
 #  result:

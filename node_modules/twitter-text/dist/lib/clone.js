@@ -1,0 +1,25 @@
+"use strict";
+
+require("core-js/modules/es6.object.define-property");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+// Copyright 2018 Twitter, Inc.
+// Licensed under the Apache License, Version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0
+function _default(o) {
+  var r = {};
+
+  for (var k in o) {
+    if (o.hasOwnProperty(k)) {
+      r[k] = o[k];
+    }
+  }
+
+  return r;
+}
+
+module.exports = exports.default;

@@ -1,0 +1,31 @@
+"use strict";
+
+require("core-js/modules/es6.object.define-property");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = _default;
+
+require("core-js/modules/es6.array.sort");
+
+// Copyright 2018 Twitter, Inc.
+// Licensed under the Apache License, Version 2.0
+// http://www.apache.org/licenses/LICENSE-2.0
+function _default(entities) {
+  entities.sort(function (a, b) {
+    return a.indices[0] - b.indices[0];
+  });
+  var prev = entities[0];
+
+  for (var i = 1; i < entities.length; i++) {
+    if (prev.indices[1] > entities[i].indices[0]) {
+      entities.splice(i, 1);
+      i--;
+    } else {
+      prev = entities[i];
+    }
+  }
+}
+
+module.exports = exports.default;
