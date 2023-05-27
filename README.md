@@ -18,7 +18,15 @@ If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_
 
 ## Usage
 
-On schedule, post to twitter.
+### Prepare Twitter API Keys
+
+1. Create Twitter App - <https://developer.twitter.com/en/portal/dashboard>
+2. Change your app permission to `Read and Write`
+3. Get API Key/API Key Secret and Access Token/Access Token Secret
+
+:memo: Bearer Token is not needed.
+
+### On schedule, post to twitter.
 
 ```yaml
 name: demo
@@ -42,7 +50,7 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
 ```
 
-On Page build, post to twitter.
+## On Page build, post to twitter.
 
 ```yaml
 on:
