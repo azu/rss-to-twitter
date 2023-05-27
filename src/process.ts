@@ -106,7 +106,7 @@ export const execute = async(logger: Logger, context: Context): Promise<void> =>
       tags: [],
       quote: ''
     }, {
-      // `)'%title%' %url% %desc%`
+      // "%title%" %url%
       template: tweetTemplate
     });
     try {

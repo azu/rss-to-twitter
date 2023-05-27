@@ -70,7 +70,7 @@
   "dependencies": {
     "cron-parser": "^4.8.1",
     "rss-parser": "^3.13.0",
-    "tweet-truncator": "^2.0.0",
+    "tweet-truncator": "^3.0.1",
     "twitter-api-v2": "^1.14.3"
   }
 }

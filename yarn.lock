@@ -1402,7 +1402,7 @@ debug@^3.2.7:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.4:
+debug@^4.1.0, debug@^4.1.1, debug@^4.3.2, debug@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -3823,12 +3823,12 @@ tunnel@^0.0.6:
   resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.6.tgz#72f1314b34a5b192db012324df2cc587ca47f92c"
   integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
 
-tweet-truncator@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/tweet-truncator/-/tweet-truncator-2.0.0.tgz#4c1bc0a79dc02053fb051b0239e74a2a63e26fe8"
-  integrity sha512-FFxowOj9dzScOcH0xeLTgrVIBsziYjU5qSQ3eTzlVVPNyuLyJ2UeqDXe5MlSkLH8A6x28Hk/10XMHJw2qzF/Tw==
+tweet-truncator@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/tweet-truncator/-/tweet-truncator-3.0.1.tgz#cdd681766874517fe6ab1e2083fec2dec8ab1587"
+  integrity sha512-1iYGRLzl4qbhWb4NtX6mRBbQctLXhHlin5epjIQhj7j6Dhvzh1P/xsNvGX3LK6JYjTgAvj3K17k57YcJMYvT1Q==
   dependencies:
-    debug "^4.3.1"
+    debug "^4.3.4"
     twitter-text "^3.1.0"
 
 twemoji-parser@^11.0.2:
