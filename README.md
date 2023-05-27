@@ -31,8 +31,10 @@ If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_
 
 ### On schedule
 
+Post new feed item via schedule cron every 15 minutes.
+
 ```yaml
-name: demo
+name: rss-to-twitter
 on:
   schedule:
     # every 15 minutes
@@ -57,13 +59,16 @@ jobs:
 
 ### On Page build
 
+Post new feed item via GitHub Pages Build event.
+
 ```yaml
+name: rss-to-twitter
 on:
   page_build
 jobs:
-  deploy:
+  twitter:
     runs-on: ubuntu-latest
-    twitter:
+    steps:
       - uses: azu/rss-to-twitter@v0.1
         with:
           RSS_URL: "https://you.github.io/feed.xml"
