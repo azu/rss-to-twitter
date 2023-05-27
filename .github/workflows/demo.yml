@@ -10,12 +10,12 @@ jobs:
     steps:
       - uses: azu/rss-to-twitter@v0.1
         with:
-            # RSS feed URL
-            RSS_URL: "https://hnrss.org/newest"
-            STATUS_TEMPLATE: "New Post: {{title}} {{link}}"
-            SCHEDULE: "*/15 * * * *"
-            # Twitter API Key
-            CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
-            CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
-            ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
-            ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          # RSS feed URL
+          RSS_URL: "https://hnrss.org/newest"
+          STATUS_TEMPLATE: "New Post: {{title}} {{link}}"
+          SCHEDULE: "*/15 * * * *"
+          # Twitter API Key
+          APIKEY: ${{ secrets.APIKEY }}
+          APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
