@@ -1,5 +1,3 @@
-import type { Context } from '@actions/github/lib/context';
-import type { Octokit } from '@technote-space/github-action-helper/dist/types';
 import type { Logger } from '@technote-space/github-action-log-helper';
 import * as core from '@actions/core';
 import cronParser from 'cron-parser';
