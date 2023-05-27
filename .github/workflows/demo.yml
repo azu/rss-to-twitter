@@ -13,6 +13,7 @@ jobs:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
+          UPDATE_WITHIN_MINUTES: 15
           # Twitter API Key
           TWITTER_APIKEY: ${{ secrets.APIKEY }}
           TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
