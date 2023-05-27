@@ -73,7 +73,9 @@ export const execute = async(logger: Logger, context: Context): Promise<void> =>
       return false;// skip if no publish date
     }
     const pubDate = new Date(item.pubDate);
-    return pubDate.getTime() >= prevExecutionTime.getTime();
+    const isNewItem = pubDate.getTime() >= prevExecutionTime.getTime();
+    logger.debug(`title: ${item.title}, pubDate: ${pubDate.toISOString()}, isNewItem: ${isNewItem}`);
+    return isNewItem;
   });
   logger.info('updated items: %d', updatedItems.length);
   if (updatedItems.length === 0) {
@@ -104,7 +106,7 @@ export const execute = async(logger: Logger, context: Context): Promise<void> =>
       tags: [],
       quote: ''
     }, {
-      // `"%title%" %url% %desc%`
+      // `)'%title%' %url% %desc%`
       template: tweetTemplate
     });
     try {
