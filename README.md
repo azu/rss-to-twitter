@@ -21,6 +21,11 @@ If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_
 1. Create Twitter App - <https://developer.twitter.com/en/portal/dashboard>
 2. Change your app permission to `Read and Write`
 3. Get API Key/API Key Secret and Access Token/Access Token Secret
+4. Add these keys to GitHub Secrets
+   - `TWITTER_APIKEY`
+   - `TWITTER_APIKEY_SECRET`
+   - `TWITTER_ACCESS_TOKEN`
+   - `TWITTER_ACCESS_TOKEN_SECRET`
 
 :memo: Bearer Token is not needed.
 
@@ -34,7 +39,7 @@ on:
     - cron: "*/15 * * * *"
   workflow_dispatch:
 jobs:
-  deploy:
+  twitter:
     runs-on: ubuntu-latest
     steps:
       - uses: azu/rss-to-twitter@v0.1
@@ -42,10 +47,10 @@ jobs:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
-          TWITTER_APIKEY: ${{ secrets.APIKEY }}
-          TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
-          TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.TWITTER_APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
 ### On Page build
@@ -56,16 +61,16 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
+    twitter:
       - uses: azu/rss-to-twitter@v0.1
         with:
           RSS_URL: "https://you.github.io/feed.xml"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
           UPDATE_WITHIN_MINUTES: 15 # post items that are updated within 15 minutes
-          TWITTER_APIKEY: ${{ secrets.APIKEY }}
-          TWITTER_APIKEY_SECRET: ${{ secrets.APIKEY_SECRET }}
-          TWITTER_ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
+          TWITTER_APIKEY_SECRET: ${{ secrets.TWITTER_APIKEY_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
 ## Release Flow
