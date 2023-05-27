@@ -23,6 +23,11 @@ If your action uses other events like `on.push`, you need to set `UPDATE_WITHIN_
   - ![ss 1](docs/img.png)
   - ![ss 2](docs/img_1.png)
 3. Get API Key/API Key Secret and Access Token/Access Token Secret
+   - ![Twitter APIKEY](docs/apikey.png)
+   - `TWITTER_APIKEY` and `TWITTER_APIKEY_SECRET`
+   - ![Twitter ACCESS TOKEN](docs/accesstoken.png)
+   - `TWITTER_ACCESS_TOKEN` and `TWITTER_ACCESS_TOKEN_SECRET`
+   - :warning: Check "Created with **Read and Write** permissions" on your app page.
 4. Add these keys to GitHub Secrets
    - `TWITTER_APIKEY`
    - `TWITTER_APIKEY_SECRET`

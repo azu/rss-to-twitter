@@ -13,6 +13,10 @@ inputs:
     description: "Template for tweet text. You can use %title%, %url%, %desc%"
     default: '"%title%" %url%'
     required: false
+  UPDATE_WITHIN_MINUTES:
+    description: "Post only if the feed is updated within the specified minutes."
+    default: "60"
+    required: false
   # Twitter API token
   # Create your own Twitter App token from https://developer.twitter.com/en/portal/dashboard
   TWITTER_APIKEY:
@@ -21,16 +25,12 @@ inputs:
   TWITTER_APIKEY_SECRET:
     description: Twitter API Secret(App key secret)
     required: true
-  TWITTER_ACCESS_TOKEN_SECRET:
-    description: Twitter Access Token Secret
-    required: true
   TWITTER_ACCESS_TOKEN:
     description: Twitter Access Token
     required: true
-  UPDATE_WITHIN_MINUTES:
-    description: "Post only if the feed is updated within the specified minutes."
-    default: "60"
-    required: false
+  TWITTER_ACCESS_TOKEN_SECRET:
+    description: Twitter Access Token Secret
+    required: true
 
 #outputs:
 #  result:
