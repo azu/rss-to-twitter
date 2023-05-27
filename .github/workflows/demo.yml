@@ -5,10 +5,10 @@ on:
     - cron: "*/5 * * * *"
   workflow_dispatch:
 jobs:
-  deploy:
+  demo:
     runs-on: ubuntu-latest
     steps:
-      - uses: azu/rss-to-twitter@v0.1
+      - uses: azu/rss-to-twitter@v1
         with:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
