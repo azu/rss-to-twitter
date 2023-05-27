@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: azu/rss-to-twitter@v0.1
         with:
-          RSS_URL: "https://you.github.io/feed.xml
+          RSS_URL: "https://you.github.io/feed.xml"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
           UPDATE_WITHIN_MINUTES: 15 # post items that are updated within 15 minutes
           TWITTER_APIKEY: ${{ secrets.APIKEY }}
