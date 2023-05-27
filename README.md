@@ -89,6 +89,10 @@ jobs:
 
 :memo: filter feed items by publish time within 15 minutes.
 
+- Example: 
+  - Workflow: https://github.com/ecmascript-daily/ecmascript-daily.github.com/blob/master/.github/workflows/rss-to-twitter.yml
+  - Twitter: https://twitter.com/EcmascriptDaily/
+
 ## Release Flow
 
 1. Tag to `v*` on Release Pages
