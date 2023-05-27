@@ -6,6 +6,9 @@ on:
       - develop/v*
     types: [closed]
 
+permissions:
+  contents: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 

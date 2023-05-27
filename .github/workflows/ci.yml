@@ -4,6 +4,8 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
 name: CI
+permissions:
+  contents: read
 
 jobs:
   eslint:
