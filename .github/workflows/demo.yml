@@ -12,7 +12,7 @@ jobs:
         with:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
-          STATUS_TEMPLATE: "New Post: %title% %link%"
+          STATUS_TEMPLATE: 'New Post: "%title%" %url%'
           SCHEDULE: "*/15 * * * *"
           # Twitter API Key
           APIKEY: ${{ secrets.APIKEY }}
