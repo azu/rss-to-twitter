@@ -1,0 +1,8 @@
+/.idea
+/.vscode
+/node_modules
+/coverage
+/lib
+/.work
+.eslintcache
+.env
