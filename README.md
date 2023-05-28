@@ -62,7 +62,8 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
-:memo: filter feed items by publish time compare to previous cron execution time.
+> **Note**: filter feed items by publish time compare to previous cron execution time.
+
 
 ### On Page build
 
@@ -87,11 +88,23 @@ jobs:
           TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
 ```
 
-:memo: filter feed items by publish time within 15 minutes.
-
-- Example: 
+- Example:
   - Workflow: https://github.com/ecmascript-daily/ecmascript-daily.github.com/blob/master/.github/workflows/rss-to-twitter.yml
   - Twitter: https://twitter.com/EcmascriptDaily/
+
+> **Note**: filter feed items by publish time within 15 minutes.
+
+> **Warning**: If you deploy your site by GitHub Actions, you need to use Personal Access Token instead of `${{ secrets. GITHUB_TOKEN }}`. It is limitation of GitHub Actions's `${{ secrets. GITHUB_TOKEN }}`.
+
+- [Automatic token authentication - GitHub Docs](https://docs.github.com/en/enterprise-server@2.22/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
+- [github actions - Push event doesn't trigger workflow on push paths - Stack Overflow](https://stackoverflow.com/questions/67550727/push-event-doesnt-trigger-workflow-on-push-paths)
+
+Instead of It, you can use Personal Access Token for deploy and it trigger `page_build` event.
+
+- Example:
+  - Deploy Workflow: https://github.com/jser/jser.github.io/blob/a0fcfc6ef3829055ee10807009d04fb6431a4daf/.github/workflows/deploy.yml#L26-L35
+  - RSS to Twitter Workflow:https://github.com/jser/jser.github.io/blob/a0fcfc6ef3829055ee10807009d04fb6431a4daf/.github/workflows/rss-to-twitter.yml
+  - Twitter:https://twitter.com/jser_info
 
 ## Release Flow
 
