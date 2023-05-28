@@ -6,9 +6,17 @@ import Parser from 'rss-parser';
 import { truncate } from 'tweet-truncator';
 import { TwitterApi } from 'twitter-api-v2';
 
-async function fetchRSSFeed(rssUrl: string) {
+async function fetchRSSFeed(rssUrl: string, retryCount = 3) {
+  if (retryCount <= 0) {
+    throw new Error('Failed to fetch RSS feed');
+  }
   const parser = new Parser();
-  return parser.parseURL(rssUrl);
+  try {
+    return await parser.parseURL(rssUrl);
+  } catch (error) {
+    console.error(error);
+    return await fetchRSSFeed(rssUrl, retryCount - 1);
+  }
 }
 
 async function getPrevExecuteTime(cronSyntax: string, currentDate: Date) {
