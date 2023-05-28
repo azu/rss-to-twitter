@@ -94,12 +94,12 @@ jobs:
 
 > **Note**: filter feed items by publish time within 15 minutes.
 
-> **Warning**: If you deploy your site by GitHub Actions, you need to use Personal Access Token instead of `${{ secrets. GITHUB_TOKEN }}`. It is limitation of GitHub Actions's `${{ secrets. GITHUB_TOKEN }}`.
+> **Warning**: If you deploy your site by GitHub Actions, you need to use Personal Access Token instead of `${{ secrets. GITHUB_TOKEN }}`. `${{ secrets. GITHUB_TOKEN }}` can not trigger `page_build` event. It is limitation of GitHub Actions's `${{ secrets. GITHUB_TOKEN }}`.
 
 - [Automatic token authentication - GitHub Docs](https://docs.github.com/en/enterprise-server@2.22/actions/security-guides/automatic-token-authentication#using-the-github_token-in-a-workflow)
 - [github actions - Push event doesn't trigger workflow on push paths - Stack Overflow](https://stackoverflow.com/questions/67550727/push-event-doesnt-trigger-workflow-on-push-paths)
 
-Instead of It, you can use Personal Access Token for deploy and it trigger `page_build` event.
+Instead of It, you can use Personal Access Token for deploy, and it triggers `page_build` event.
 
 - Example:
   - Deploy Workflow: https://github.com/jser/jser.github.io/blob/a0fcfc6ef3829055ee10807009d04fb6431a4daf/.github/workflows/deploy.yml#L26-L35
