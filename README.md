@@ -64,7 +64,6 @@ jobs:
 
 > **Note**: filter feed items by publish time compare to previous cron execution time.
 
-
 ### On Page build
 
 Post new feed item via GitHub Pages Build event.
@@ -107,6 +106,12 @@ Instead of It, you can use Personal Access Token for deploy, and it triggers `pa
   - Deploy Workflow: https://github.com/jser/jser.github.io/blob/a0fcfc6ef3829055ee10807009d04fb6431a4daf/.github/workflows/deploy.yml#L26-L35
   - RSS to Twitter Workflow:https://github.com/jser/jser.github.io/blob/a0fcfc6ef3829055ee10807009d04fb6431a4daf/.github/workflows/rss-to-twitter.yml
   - Twitter:https://twitter.com/jser_info
+
+## TWEET_TEMPLATE
+
+- `%title%`: Item title
+- `%url`: Item url
+- `%desc%`: Item content snip(max 280 charaters)
 
 ## Release Flow
 
