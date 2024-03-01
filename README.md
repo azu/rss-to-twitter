@@ -47,6 +47,12 @@ on:
     # every 15 minutes
     - cron: "*/15 * * * *"
   workflow_dispatch:
+    inputs:
+      updateMinutes:
+        description: "Update within minutes"
+        required: false
+        default: 15
+        type: number
 jobs:
   twitter:
     runs-on: ubuntu-latest
@@ -56,7 +62,7 @@ jobs:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
-          UPDATE_WITHIN_MINUTES: 15 # for workflow_dispatch
+          UPDATE_WITHIN_MINUTES: ${{ inputs.updateMinutes }} # for workflow_dispatch
           TWITTER_APIKEY: ${{ secrets.TWITTER_APIKEY }}
           TWITTER_APIKEY_SECRET: ${{ secrets.TWITTER_APIKEY_SECRET }}
           TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
