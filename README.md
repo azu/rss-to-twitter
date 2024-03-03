@@ -51,7 +51,7 @@ on:
       updateMinutes:
         description: "Update within minutes"
         required: false
-        default: 15
+        default: 60
         type: number
 jobs:
   twitter:
