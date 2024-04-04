@@ -51,7 +51,7 @@ jobs:
   twitter:
     runs-on: ubuntu-latest
     steps:
-      - uses: azu/rss-to-twitter@v1
+      - uses: azu/rss-to-twitter@v2
         with:
           # RSS feed URL
           RSS_URL: "https://hnrss.org/newest"
@@ -79,7 +79,7 @@ jobs:
     if: ${{ github.event.build.error.message == null }}
     runs-on: ubuntu-latest
     steps:
-      - uses: azu/rss-to-twitter@v1
+      - uses: azu/rss-to-twitter@v2
         with:
           RSS_URL: "https://you.github.io/feed.xml"
           TWEET_TEMPLATE: 'New Post: "%title%" %url%'
