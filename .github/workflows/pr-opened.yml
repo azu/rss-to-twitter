@@ -1,20 +1,24 @@
 on:
-  pull_request_target:
+  pull_request:
     types: [opened]
 
 name: Pull Request opened
+
+permissions: {}
 
 jobs:
   assignToProject:
     name: Assign PullRequest to Project
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    permissions:
+      contents: read
     steps:
-      - uses: technote-space/load-config-action@v1
+      - uses: technote-space/load-config-action@dbd17f7e0b2b95e36eb25d01e416baf85d7fa991 # v1.6.4
         with:
           CONFIG_FILENAME: workflow-settings.json, workflow-details.json
           IGNORE_WARNING: 'true'
-      - uses: technote-space/create-project-card-action@v1
+      - uses: technote-space/create-project-card-action@1c70cc58ecee907bc9544f02cc2a4171a291705c # v1.4.2
         with:
           PROJECT: ${{ env.PROJECT }}
           COLUMN: ${{ env.PR_COLUMN }}
@@ -24,12 +28,17 @@ jobs:
     name: Assign author to PR
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    permissions:
+      pull-requests: write
     steps:
-      - uses: technote-space/assign-author@v1
+      - uses: technote-space/assign-author@9558557c5c4816f38bd06176fbc324ba14bb3160 # v1.6.2
 
   addLabelsByBranch:
     name: PR Labeler
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
-      - uses: technote-space/pr-labeler-action@v4
+      - uses: technote-space/pr-labeler-action@0929abfe0b8247518affd8f5e48eb2936f7ef760 # v4.3.3
